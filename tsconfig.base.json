@@ -14,7 +14,21 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@my-profile-ssr/core-i18n-data": ["libs/core/i18n/data/src/index.ts"],
+      "@my-profile-ssr/core-sidebar-data": [
+        "libs/core/sidebar/data/src/index.ts"
+      ],
+      "@my-profile-ssr/features-experience-data": [
+        "libs/features/experience/data/src/index.ts"
+      ],
+      "@my-profile-ssr/features-summary-data": [
+        "libs/features/summary/data/src/index.ts"
+      ],
+      "@my-profile-ssr/shared-common-data": [
+        "libs/shared/common/data/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
