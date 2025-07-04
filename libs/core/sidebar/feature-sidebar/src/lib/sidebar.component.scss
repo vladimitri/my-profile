@@ -1,0 +1,37 @@
+@use 'libs/shared/common/styles/src/lib/mixins' as mixins;
+@use 'libs/shared/common/styles/src/lib/variables' as variables;
+
+:host {
+  color: variables.$sidebar-text-color;
+  --mat-list-list-item-focus-label-text-color: variables.$sidebar-text-color;
+  --mat-list-list-item-focus-state-layer-color: transparent;
+  --mat-list-list-item-focus-state-layer-opacity: 0;
+  --mat-list-list-item-hover-label-text-color: variables.$sidebar-text-color;
+  --mat-list-list-item-label-text-color: variables.$sidebar-text-color;
+  mat-card {
+    backdrop-filter: blur(5px);
+    background: variables.$sidebar-background-color;
+    display: block;
+    @include mixins.border(variables.$sidebar-border-color);
+
+    mat-divider {
+      margin: variables.$sidebar-divider-margin 0;
+    }
+    mat-list-item {
+      border-radius: variables.$sidebar-link-border-radius;
+      text-align: variables.$sidebar-link-text-align;
+      transition: all ease 0.2s;
+      &:focus {
+        background-color: transparent;
+      }
+      &:hover {
+        background-color: variables.$sidebar-link-background-color-hover;
+        cursor: pointer;
+      }
+
+      &.router-link-active {
+        @include mixins.sidebar-link-active;
+      }
+    }
+  }
+}

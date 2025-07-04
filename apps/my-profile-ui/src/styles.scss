@@ -1,1 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@use 'fonts' as fonts;
+
+html {
+  color-scheme: light dark;
+  &::view-transition {
+    z-index: 10;
+  }
+  @include mat.theme((
+    color: mat.$violet-palette,
+    typography: 'Roboto Slab',
+    density: 0
+  ));
+
+  @include fonts.roboto-slab-100;
+  // @include fonts.roboto-slab-200;
+  // @include fonts.roboto-slab-300;
+  @include fonts.roboto-slab-400;
+  @include fonts.roboto-slab-500;
+  // @include fonts.roboto-slab-600;
+  @include fonts.roboto-slab-700;
+  // @include fonts.roboto-slab-800;
+  // @include fonts.roboto-slab-900;
+  @include fonts.roboto-slab-italic-400;
+
+  body {
+    margin: 0;
+    background-image: url('/bg.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    font-family: 'Roboto Slab', sans-serif;
+  }
+}
+
+.heading-1 {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 2rem;
+  margin: 1rem 0;
+}
+
+.heading-2 {
+  font-size: 1.5rem;
+  font-weight: 100;
+  line-height: 1.5rem;
+  margin: 0.5rem 0;
+}
+

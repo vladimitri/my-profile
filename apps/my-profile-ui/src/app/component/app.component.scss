@@ -1,0 +1,23 @@
+@use 'libs/shared/common/styles/src/lib/mixins' as mixins;
+@use 'libs/shared/common/styles/src/lib/variables' as variables;
+
+:host {
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: variables.$app-background;
+  background-attachment: fixed;
+  .app-container {
+    @include mixins.app-container;
+    .app-sidebar {   
+      @include mixins.app-sidebar;
+    }
+    .app-content {
+      @include mixins.app-content;
+    }
+  }
+}
+
+
+

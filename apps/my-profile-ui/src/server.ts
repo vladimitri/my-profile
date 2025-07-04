@@ -6,6 +6,29 @@ import * as express from 'express';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import bootstrap from './main.server';
+import { initialPayloadData, DataPayload } from '@my-profile-ssr/shared/common-data';
+
+
+const initialData: DataPayload = {
+  profile: {
+    fullName: 'Vladimir Balan',
+    position: 'Front End Developer',
+    avatarUrl: '/profile.jpg'
+  },
+  navigation: {
+    routes: [
+      {
+        label: 'About me',
+        route: 'about',
+      },
+      {
+        label: 'AskMeAnything Chat',
+        route: 'askmeanything',
+      },
+    ]
+  },
+}
+
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -40,7 +63,10 @@ export function app(): express.Express {
         documentFilePath: indexHtml,
         url: `${protocol}://${headers.host}${originalUrl}`,
         publicPath: distFolder,
-        providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
+        providers: [
+          { provide: APP_BASE_HREF, useValue: baseUrl },
+          { provide: initialPayloadData, useValue: initialData },
+        ],
       })
       .then((html) => res.send(html))
       .catch((err) => next(err));

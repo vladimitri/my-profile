@@ -1,0 +1,6 @@
+@forward 'mixins/app';
+@forward 'mixins/sidebar';
+
+@mixin border($color) {
+  border: 1px solid $color;
+}

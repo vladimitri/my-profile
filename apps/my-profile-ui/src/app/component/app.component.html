@@ -1,0 +1,12 @@
+
+<div class="app-container">
+  <div class="app-sidebar">
+    @defer{
+      <mp-sidebar></mp-sidebar>
+    }
+  </div>
+  
+  <div class="app-content" [@routeTransition]="activatedRoute.snapshot.data">
+    <router-outlet #o="outlet"></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+@use 'libs/shared/common/styles/src/lib/variables' as variables;
+@use 'libs/shared/common/styles/src/lib/mixins' as mixins;
+
+:host {
+  mat-card {
+    backdrop-filter: blur(2px);
+    background: variables.$summary-background-color;
+    color: variables.$summary-text-color;
+    display: block;
+    font-size: variables.$summary-font-size;
+    padding: 1.5rem 2rem;
+    text-align: variables.$summary-text-align;
+    transition: all 0.2s ease;
+    @include mixins.border(transparent);
+
+    p {
+      margin: 0;
+    }
+  }
+}

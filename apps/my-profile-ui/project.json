@@ -19,10 +19,13 @@
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/my-profile-ui/public"
+            "input": "apps/my-profile-ui/assets"
           }
         ],
-        "styles": ["apps/my-profile-ui/src/styles.scss"]
+        "styles": ["apps/my-profile-ui/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["libs/shared/common/styles/src/lib"]
+        }
       },
       "configurations": {
         "production": {

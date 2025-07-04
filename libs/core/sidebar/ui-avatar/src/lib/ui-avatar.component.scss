@@ -1,0 +1,5 @@
+@use 'libs/shared/common/styles/src/lib/mixins' as mixins;
+
+.avatar-wrapper {
+  @include mixins.avatar-wrapper;
+}
