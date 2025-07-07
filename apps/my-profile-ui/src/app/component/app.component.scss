@@ -3,12 +3,20 @@
 
 :host {
   display: block;
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  background: variables.$app-background;
+  min-height: 100vh;
+
+  font-family: variables.$app-font;
+
+  background-image: url('/app-background.jpg'), variables.$app-background;
+  background-blend-mode: overlay;
   background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+
   .app-container {
+    
     @include mixins.app-container;
     .app-sidebar {   
       @include mixins.app-sidebar;
@@ -17,6 +25,8 @@
       @include mixins.app-content;
     }
   }
+
+  
 }
 
 

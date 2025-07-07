@@ -15,8 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@my-profile-ssr/core/summary-ui-experience": [
-        "libs/features/summary/ui-experience/src/index.ts"
+      "@my-profile-ssr/features/summary-ui-logo-pool": [
+        "libs/features/summary/ui-logo-pool/src/index.ts"
       ],
       "@my-profile-ssr/core/i18n-data": ["libs/core/i18n/data/src/index.ts"],
       "@my-profile-ssr/core/sidebar-data": [
@@ -30,6 +30,9 @@
       ],
       "@my-profile-ssr/core/summary-component": [
         "libs/features/summary/feature-summary/src/index.ts"
+      ],
+      "@my-profile-ssr/core/summary-ui-experience": [
+        "libs/features/summary/ui-experience/src/index.ts"
       ],
       "@my-profile-ssr/features/summary-data": [
         "libs/features/summary/data/src/index.ts"

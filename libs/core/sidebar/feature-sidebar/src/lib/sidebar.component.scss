@@ -13,6 +13,8 @@
     background: variables.$sidebar-background-color;
     display: block;
     @include mixins.border(variables.$sidebar-border-color);
+    @include mixins.heading-1;
+    @include mixins.heading-2;
 
     mat-divider {
       margin: variables.$sidebar-divider-margin 0;

@@ -1,0 +1,5 @@
+<div class="logo-pool">
+  @for(item of mappedItems(); track item.label) {
+    <div class="logo-item" [style.backgroundImage]="item.icon"></div>
+  }
+</div>

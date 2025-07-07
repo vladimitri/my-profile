@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
 @use 'fonts' as fonts;
+@use 'variables' as variables;
 
 html {
   color-scheme: light dark;
@@ -25,25 +26,6 @@ html {
 
   body {
     margin: 0;
-    background-image: url('/bg.jpg');
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    font-family: 'Roboto Slab', sans-serif;
   }
-}
-
-.heading-1 {
-  font-size: 2rem;
-  font-weight: 500;
-  line-height: 2rem;
-  margin: 1rem 0;
-}
-
-.heading-2 {
-  font-size: 1.5rem;
-  font-weight: 100;
-  line-height: 1.5rem;
-  margin: 0.5rem 0;
 }
 

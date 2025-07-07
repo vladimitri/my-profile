@@ -40,7 +40,7 @@ Thumbs.db
 .github/instructions/nx.instructions.md
 
 .angular
-apps/my-profile-ui/assets/bg.jpg
-apps/my-profile-ui/assets/profile.jpg
+apps/my-profile-ui/assets/*.jpg
+apps/my-profile-ui/assets/*.png
 
 

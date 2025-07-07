@@ -1,4 +1,5 @@
-import { inject, InjectionToken, makeStateKey, Provider, StateKey, TransferState } from "@angular/core";
+import { inject, InjectionToken, makeStateKey, PLATFORM_ID, Provider, StateKey, TransferState } from "@angular/core";
+import { isPlatformBrowser, isPlatformServer } from "@angular/common";
 
 
 type NavigationItem = {
@@ -6,17 +7,20 @@ type NavigationItem = {
   route: string;
 }
 
-type TechItem = {
+export type TechItem = {
   label: string;
   icon: string;
+  description: string;
 }
 
 type ExperienceItem = {
-  key: string;
-  employerName: string;
-  position: string;
-  duration: string;
-  interval: string;
+  employer: {
+    name: string,
+    logo: string,
+    period: string,
+    position: string
+  }
+  description: string,
   techStack: TechItem[];
 }
 
@@ -32,7 +36,12 @@ export type Profile = {
 
 export type Experience = ExperienceItem[];
 
+export type Config = {
+  background: string;
+}
+
 export type DataPayload = {
+  config: Config,
   navigation: Navigation,
   profile: Profile,
   experience?: Experience,
@@ -56,11 +65,46 @@ const provideTransferState = <T>(key: StateKey<T>, provider: InjectionToken<T>):
 
 export const initialPayloadData = new InjectionToken<DataPayload>('initialPayloadData');
 
-export const profileTransferKey = makeStateKey<Profile>('profile');
-export const navigationTransferKey = makeStateKey<Navigation>('navigation');
 
+
+export const runOnClient = new InjectionToken<(callback: () => void) => void>('run code on client', {
+  providedIn: 'root',
+  factory: () => {
+    const platformId = inject(PLATFORM_ID);
+    return (callback: () => void) => {
+      if(isPlatformBrowser(platformId)) {
+        callback()
+      }
+    }
+  }
+});
+
+export const runOnServer = new InjectionToken<(callback: () => void) => void>('run code on server', {
+  providedIn: 'root',
+  factory: () => {
+    const platformId = inject(PLATFORM_ID);
+    return (callback: () => void) => {
+      if(isPlatformServer(platformId)) {
+        callback()
+      }
+    }
+  }
+});
+
+export const configData = new InjectionToken<Config>('configData');
 export const profileData = new InjectionToken<Profile>('profileData');
 export const navigationData = new InjectionToken<Navigation>('navigationData');
+export const experienceData = new InjectionToken<Experience>('experienceData');
+
+
+export const configTransferKey = makeStateKey<Config>('config');
+export const profileTransferKey = makeStateKey<Profile>('profile');
+export const navigationTransferKey = makeStateKey<Navigation>('navigation');
+export const experienceTransferKey = makeStateKey<Experience>('experience');
+
+export const provideConfigTransferState = () => {
+  return provideTransferState<Config>(configTransferKey, configData);
+}
 
 export const provideProfileTransferState = () => {
   return provideTransferState<Profile>(profileTransferKey, profileData);
@@ -69,3 +113,9 @@ export const provideProfileTransferState = () => {
 export const provideNavigationTransferState = () => {
   return provideTransferState<Navigation>(navigationTransferKey, navigationData);
 }
+
+
+export const provideExperineceTransferState = () => {
+  return provideTransferState<Experience>(experienceTransferKey, experienceData);
+}
+

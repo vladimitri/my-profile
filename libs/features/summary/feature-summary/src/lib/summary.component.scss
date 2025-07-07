@@ -11,7 +11,40 @@
     padding: 1.5rem 2rem;
     text-align: variables.$summary-text-align;
     transition: all 0.2s ease;
+    margin-top: 2rem;
     @include mixins.border(transparent);
+    .mat-mdc-card-avatar {
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center center;
+      width: 6rem;
+      height: 6rem;
+      border-radius: 0.25rem;
+      margin: 0;
+    }
+    mat-card-header {
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    mat-card-title {
+      font-size: 1.5rem;
+    }
+     
+    mat-card-subtitle {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    mat-card-content {
+      h5 {
+        margin: 0.5rem 0;
+      }
+      mat-divider {
+        margin: 0.5rem 0;
+      }
+    }
 
     p {
       margin: 0;

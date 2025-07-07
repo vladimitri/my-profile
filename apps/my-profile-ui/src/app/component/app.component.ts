@@ -1,10 +1,8 @@
-import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MpSidebarComponent } from '@my-profile-ssr/core/siderbar-component';
-import { provideNavigationTransferState, provideProfileTransferState, routeTransition } from '@my-profile-ssr/shared/common-data';
+import { configData, provideConfigTransferState, provideNavigationTransferState, provideProfileTransferState, routeTransition, runOnClient, runOnServer } from '@my-profile-ssr/shared/common-data';
 import { MpTransferStateService } from '../transfer.service';
-import { isPlatformServer } from '@angular/common';
-
 
 @Component({
   imports: [RouterModule, MpSidebarComponent],
@@ -15,6 +13,7 @@ import { isPlatformServer } from '@angular/common';
     routeTransition
   ],
   providers: [
+    provideConfigTransferState(),
     provideProfileTransferState(),
     provideNavigationTransferState(),
   ],
@@ -23,16 +22,14 @@ export class App implements OnInit {
 
   public activatedRoute = inject(ActivatedRoute);
   public transferService = inject(MpTransferStateService);
+  public runCodeOnClient = inject(runOnClient);
+  public runCodeOnServer = inject(runOnServer);
 
-  private serve = () => {
-    this.transferService.initializeTransferState()
-  };
-
-  private readonly platformId = inject(PLATFORM_ID);
+  public configData = inject(configData);
 
   ngOnInit(): void {
-    if (isPlatformServer(this.platformId)) {
-      this.serve();
-    }
+    this.runCodeOnServer(() => {
+      this.transferService.initializeTransferState()
+    })
   }
 }

@@ -6,7 +6,7 @@ import {
   Provider,
   provideZoneChangeDetection,
 } from '@angular/core';
-import { BaseRouteReuseStrategy, provideRouter, RouteReuseStrategy, withViewTransitions } from '@angular/router';
+import { BaseRouteReuseStrategy, provideRouter, RouteReuseStrategy, withInMemoryScrolling, withViewTransitions } from '@angular/router';
 import {
   provideClientHydration,
   withEventReplay,
@@ -39,11 +39,16 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideIfInexistent(initialPayloadData, {} as DataPayload),
-    provideRouter(appRoutes, withViewTransitions()),
+    provideRouter(
+      appRoutes,
+      withViewTransitions(),
+      withInMemoryScrolling({
+        scrollPositionRestoration: "top",
+      })),
     provideAnimations(),
-    {
-      provide: RouteReuseStrategy,
-      useClass: CustomRouteReuseStrategy
-    }
+    // {
+    //   provide: RouteReuseStrategy,
+    //   useClass: CustomRouteReuseStrategy
+    // }
   ],
 };
