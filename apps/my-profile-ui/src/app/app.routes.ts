@@ -7,7 +7,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'askmeanything',
-    loadComponent: () => import('@my-profile-ssr/core/summary-component').then(m => m.MpSummaryComponent)
+    loadComponent: () => import('@my-profile-ssr/features/chat-component').then(m => m.MpChatFeatureChat)
   },
   {
     path: '**',

@@ -1,26 +1,32 @@
 import { inject, InjectionToken, makeStateKey, PLATFORM_ID, Provider, StateKey, TransferState } from "@angular/core";
 import { isPlatformBrowser, isPlatformServer } from "@angular/common";
 
+export type languages = 'en' | 'ro';
+
+export type Translated = {
+  [K in languages]: string
+}
+export type TranslatedString = string | Translated;
 
 type NavigationItem = {
-  label: string;
+  label: TranslatedString;
   route: string;
 }
 
 export type TechItem = {
-  label: string;
+  label: TranslatedString;
   icon: string;
-  description: string;
+  description: TranslatedString;
 }
 
-type ExperienceItem = {
+export type ExperienceItem = {
   employer: {
-    name: string,
-    logo: string,
-    period: string,
-    position: string
+    name: TranslatedString,
+    logo?: string,
+    period: TranslatedString,
+    position: TranslatedString
   }
-  description: string,
+  description: TranslatedString,
   techStack: TechItem[];
 }
 
@@ -30,7 +36,7 @@ export type Navigation = {
 
 export type Profile = {
   fullName: string;
-  position: string;
+  position: TranslatedString;
   avatarUrl: string;
 }
 

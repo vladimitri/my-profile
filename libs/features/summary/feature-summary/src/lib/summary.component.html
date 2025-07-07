@@ -1,20 +1,4 @@
 
 @for(exp of experience; track exp.employer.name) {
-  <mat-card appearance="outlined">
-    <mat-card-header>
-      <div mat-card-avatar [style.background-image]="backgroundMapper(exp.employer.logo)"></div>
-      <mat-card-title>{{ exp.employer.name }}</mat-card-title>
-      <mat-card-subtitle>{{ exp.employer.position }} - {{ exp.employer.period }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <h5>Experience</h5>
-      <mat-divider></mat-divider>
-      <p>
-        {{ exp.description }}
-      </p>
-      <h5>Tech stack</h5>
-      <mat-divider></mat-divider>
-      <mp-ui-logo-pool [items]="exp.techStack"></mp-ui-logo-pool>
-    </mat-card-content>
-  </mat-card>
+  <mp-ui-experience [experience]="exp"></mp-ui-experience>
 }

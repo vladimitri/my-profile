@@ -5,8 +5,8 @@
       [alt]="profile.fullName"
     >
     </mp-sidebar-ui-avatar>
-    <h3 class="heading-1">{{ profile.fullName }}</h3>
-    <h4 class="heading-2">{{ profile.position }}</h4>
+    <h3 class="heading-1">{{ profile.fullName | st }}</h3>
+    <h4 class="heading-2">{{ profile.position | st}}</h4>
     <mat-divider></mat-divider>
     <mat-list role="list">
       @for (item of navigation.routes; track item.label) {
@@ -15,7 +15,7 @@
           [routerLinkActiveOptions]="{exact:true}"
           routerLinkActive="router-link-active"
           role="listitem">
-          {{ item.label }}
+          {{ item.label | st }}
         </mat-list-item>
       }
     </mat-list>

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CoreSummaryUiExperience } from './ui-experience.component';
+import { MpUiExperience } from './ui-experience.component';
 
 describe('CoreSummaryUiExperience', () => {
-  let component: CoreSummaryUiExperience;
-  let fixture: ComponentFixture<CoreSummaryUiExperience>;
+  let component: MpUiExperience;
+  let fixture: ComponentFixture<MpUiExperience>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CoreSummaryUiExperience],
+      imports: [MpUiExperience],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CoreSummaryUiExperience);
+    fixture = TestBed.createComponent(MpUiExperience);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

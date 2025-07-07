@@ -6,6 +6,7 @@ import { MatList, MatListItem } from '@angular/material/list';
 import { MpSidebarUiAvatar } from '@my-profile-ssr/core/sidebar/ui-avatar';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { profileData, navigationData } from '@my-profile-ssr/shared/common-data';
+import { MpSstTranslate } from '@my-profile-ssr/core/i18n-data';
 
 
 @Component({
@@ -19,6 +20,7 @@ import { profileData, navigationData } from '@my-profile-ssr/shared/common-data'
     MatListItem,
     RouterLink,
     RouterLinkActive,
+    MpSstTranslate
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './sidebar.component.html',

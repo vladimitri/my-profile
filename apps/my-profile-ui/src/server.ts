@@ -43,17 +43,17 @@ const initialData: DataPayload = {
         {
           icon: '/react.jpg',
           label: 'react',
-          description: 'did nothing'
+          description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         },
         {
           icon: '/nx.jpg',
           label: 'nx',
-          description: 'did nothing'
+          description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         },
         {
           icon: '/angular.jpg',
           label: 'angular',
-          description: 'did nothing'
+          description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         },
         {
           icon: '/react.jpg',
@@ -86,6 +86,21 @@ const initialData: DataPayload = {
           label: 'nx',
           description: 'did nothing'
         }
+      ]
+    },
+    {
+      employer: {
+        name: 'Personal experiece',
+        period: 'August 2016 - March 2021',
+        position: 'Full-stack Developer'
+      },
+      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      techStack: [
+        {
+          icon: '/react.jpg',
+          label: 'angular 2',
+          description: 'did nothing'
+        },
       ]
     }
   ]
