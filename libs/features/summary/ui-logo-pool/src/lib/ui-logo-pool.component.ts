@@ -6,31 +6,63 @@ import { MpSstTranslate } from '@my-profile-ssr/core/i18n-data';
 
 import { Directive } from '@angular/core';
 
-@Directive({ selector: '[mpTooltip]' })
+@Directive({
+  selector: '[mpTooltip]',
+})
 export class MpTooltipDirective {
 
   public readonly mpTooltip = input<string>();
 
-  private addElement(element: HTMLElement): void {
-    setTimeout(() => {
-      element.innerHTML = this.mpTooltip() ?? '';
-    }, 500)
-    
+  private createElement(): HTMLElement {
+    const p = document.createElement('p');
+
+    p.style.position = 'absolute';
+    p.style.right = '0';
+    p.style.top = '0';
+    p.style.padding = '1rem 1.5rem 1rem 3rem';
+    p.style.margin = '0';
+    p.style.width = '100%';
+    p.style.color = 'transparent';
+    p.style.transition = 'all 0.2s ease';
+    p.style.boxSizing = 'border-box';
+
+    p.textContent = this.mpTooltip() ?? '';
+    return p;
+  }
+  
+  private hideTooltip(target: HTMLElement): void {
+    target.innerHTML = '';
+    target.style.height = '';
+    target.style.width = '';
+    target.classList.remove('show-tooltip');
   }
 
-  private removeElement(element: HTMLElement): void {
-    element.innerHTML = '';
+  private showTooltip(target: HTMLElement): void {
+    target.classList.add('show-tooltip');
+      target.style.width = '100%';
+      setTimeout(() => {
+        target.appendChild(this.createElement());
+        const p = target.querySelector('p');
+        const pixelHeight = p?.offsetHeight;
+        target.style.height =  `${pixelHeight}px`;
+        if (p) {
+          setTimeout(() => {
+            p.style.color = 'black';
+          }, 300)
+        }
+      }, 300)
   }
 
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent) { 
-    const target = event.target as HTMLElement;
-    if (target.classList.contains('active')) {
-      target.classList.remove('active');
-      this.removeElement(target);
+    let target = event.target as HTMLElement;
+    if (target.tagName === 'P') {
+      target = target.parentElement as HTMLElement;
+    }
+    if (target.classList.contains('show-tooltip')) {
+      this.hideTooltip(target);
     } else {
-      target.classList.add('active');
-      this.addElement(target);
+      this.showTooltip(target)
     }
   }
 }

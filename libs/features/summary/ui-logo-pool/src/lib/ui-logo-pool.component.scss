@@ -7,27 +7,23 @@
   align-items: center;
 }
 
+$logo-size: 3rem;
+
 .logo-item {
-  width: 40px;
-  height: 40px;
+  width: $logo-size;
+  height: $logo-size;
   background: #f5f5f5;
   border-radius: 8px;
+  box-sizing: border-box;
   box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   font-size: 1.2rem;
-  background-position: center center;
-  background-size: calc(0.8 * 40px);
+  background-position: calc(0.15 * $logo-size) 50%;
+  background-size: calc(0.7 * $logo-size);
   background-repeat: no-repeat;
-  cursor: pointer;
-  transition: all 0.5s ease;
 
-  &.active {
-    width: 100%;
-    background-position: 1rem 1rem;
-    min-height: 2rem;
-    height: auto;
-    color: black;
-    padding: 1rem 2rem 1rem 4rem;
-    font-size: 1rem;
-    transition: all 0.5s ease;
-  }
+  position: relative;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+
 }
