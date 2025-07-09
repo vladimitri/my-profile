@@ -1,1 +1,1 @@
-export * from './lib/summary-data/summary-data';
+export * from './lib/logo-tooltip.directive';

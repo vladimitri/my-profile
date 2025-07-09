@@ -1,4 +1,8 @@
-
+<mp-ui-simple-summary
+  [title]="summary.title"
+  [description]="summary.description"  
+>
+</mp-ui-simple-summary>
 @for(exp of experience; track exp.employer.name) {
   <mp-ui-experience [experience]="exp"></mp-ui-experience>
 }

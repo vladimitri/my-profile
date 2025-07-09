@@ -1,5 +1,5 @@
 import { inject, Injectable, TransferState } from '@angular/core';
-import { configTransferKey, experienceTransferKey, initialPayloadData, navigationTransferKey, profileTransferKey } from '@my-profile-ssr/shared/common-data';
+import { configTransferKey, experienceTransferKey, initialPayloadData, navigationTransferKey, profileTransferKey, summaryTransferKey } from '@my-profile-ssr/shared/common-data';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +14,11 @@ export class MpTransferStateService {
     this.setNavigationData(this.initialData.navigation);
     this.setConfigData(this.initialData.config);
     this.setExperienceData(this.initialData.experience);
+    this.setSummaryData(this.initialData.summary);
+  }
+
+  private setSummaryData(summaryData: any) {
+    this.transferState.set(summaryTransferKey, summaryData);
   }
 
   private setProfileData(profileData: any) {

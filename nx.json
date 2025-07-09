@@ -57,10 +57,11 @@
     },
     "@nx/angular:library": {
       "linter": "eslint",
+      "style": "scss",
       "unitTestRunner": "jest"
     },
     "@nx/angular:component": {
-      "style": "css"
+      "style": "scss"
     }
   }
 }

@@ -40,6 +40,11 @@ export type Profile = {
   avatarUrl: string;
 }
 
+export type Summary = {
+  title: TranslatedString;
+  description: TranslatedString;
+}
+
 export type Experience = ExperienceItem[];
 
 export type Config = {
@@ -51,6 +56,7 @@ export type DataPayload = {
   navigation: Navigation,
   profile: Profile,
   experience?: Experience,
+  summary: Summary
 };
 
 const provideTransferState = <T>(key: StateKey<T>, provider: InjectionToken<T>): Provider => {
@@ -101,12 +107,14 @@ export const configData = new InjectionToken<Config>('configData');
 export const profileData = new InjectionToken<Profile>('profileData');
 export const navigationData = new InjectionToken<Navigation>('navigationData');
 export const experienceData = new InjectionToken<Experience>('experienceData');
+export const summaryData = new InjectionToken<Summary>('summaryData');
 
 
 export const configTransferKey = makeStateKey<Config>('config');
 export const profileTransferKey = makeStateKey<Profile>('profile');
 export const navigationTransferKey = makeStateKey<Navigation>('navigation');
 export const experienceTransferKey = makeStateKey<Experience>('experience');
+export const summaryTransferKey = makeStateKey<Summary>('summary');
 
 export const provideConfigTransferState = () => {
   return provideTransferState<Config>(configTransferKey, configData);
@@ -123,5 +131,9 @@ export const provideNavigationTransferState = () => {
 
 export const provideExperineceTransferState = () => {
   return provideTransferState<Experience>(experienceTransferKey, experienceData);
+}
+
+export const provideSummaryTransferState = () => {
+  return provideTransferState<Summary>(summaryTransferKey, summaryData);
 }
 

@@ -1,5 +1,6 @@
 import {
   ApplicationConfig,
+  DOCUMENT,
   inject,
   InjectionToken,
   provideBrowserGlobalErrorListeners,
@@ -15,12 +16,17 @@ import {
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { appRoutes } from './app.routes';
 import { DataPayload, initialPayloadData } from '@my-profile-ssr/shared/common-data';
+import { appLanguage } from '@my-profile-ssr/core/i18n-data';
 
-export function provideIfInexistent<T>(token: InjectionToken<T>, value: T): Provider {
+function isFunction(value: unknown): value is () => unknown {
+  return typeof value === 'function';
+}
+
+export function provideIfInexistent<T>(token: InjectionToken<T>, value: T | (() => T)): Provider {
   return {
     provide: token,
     useFactory: () =>
-      inject(token, { optional: true, skipSelf: true }) ?? value,
+      inject(token, { optional: true, skipSelf: true }) ?? (isFunction(value) ? value() : value),
   };
 }
 
@@ -39,6 +45,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideIfInexistent(initialPayloadData, {} as DataPayload),
+    provideIfInexistent(appLanguage, () => inject(DOCUMENT).documentElement.lang),
     provideRouter(
       appRoutes,
       withViewTransitions(),

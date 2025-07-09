@@ -28,6 +28,9 @@
       "@my-profile-ssr/core/summary-component": [
         "libs/features/summary/feature-summary/src/index.ts"
       ],
+      "@my-profile-ssr/features/summary-ui-simple-summary": [
+        "libs/features/summary/ui-simple-summary/src/index.ts"
+      ],
       "@my-profile-ssr/features/chat-component": [
         "libs/features/chat/feature-chat/src/index.ts"
       ],

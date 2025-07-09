@@ -7,9 +7,14 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import bootstrap from './main.server';
 import { initialPayloadData, DataPayload } from '@my-profile-ssr/shared/common-data';
+import { appLanguage } from '@my-profile-ssr/core/i18n-data';
 
 
 const initialData: DataPayload = {
+  summary: {
+    title: 'General overview',
+    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+  },
   config: {
     background: '/bg.jpg'
   },
@@ -133,7 +138,17 @@ export function app(): express.Express {
   // All regular routes use the Angular engine
   server.get('*', (req, res, next) => {
     const { protocol, originalUrl, baseUrl, headers } = req;
+    const cookies = req.headers.cookie
+      ? Object.fromEntries(
+        req.headers.cookie.split(';').map(cookie => {
+        const [name, ...rest] = cookie.trim().split('=');
+        return [name, decodeURIComponent(rest.join('='))];
+        })
+      )
+      : {};
 
+    const lang = cookies['lang'];
+    console.log(`Detected language: ${lang}`);
     commonEngine
       .render({
         bootstrap,
@@ -143,6 +158,7 @@ export function app(): express.Express {
         providers: [
           { provide: APP_BASE_HREF, useValue: baseUrl },
           { provide: initialPayloadData, useValue: initialData },
+          { provide: appLanguage, useValue: lang ?? 'en' },
         ],
       })
       .then((html) => res.send(html))
